@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        //set a function calculateTip() in the UI element button @+id/calculate
         binding.calculate.setOnClickListener { calculateTip() }
 
     }
@@ -25,13 +25,17 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     private fun calculateTip() {
 
-        val stringInTextField = binding.costOfService.text.toString()
+        val stringInTextField = binding.costOfServiceEditText.text.toString()
         val cost = stringInTextField.toDoubleOrNull()
         if (cost == null) {
+            //set empty string in textView @+id/tipamount
             binding.tipamount.text = ""
             return
         }
-        val tipPercent = when (binding.radiobuttongrup.checkedRadioButtonId) {
+
+        /* set value of radio group in variable tipPercent
+        *  */
+        val tipPercent = when (binding.radiobuttongroup.checkedRadioButtonId) {
             R.id.amazing20 -> 0.20
             R.id.good18 -> 0.18
             else -> 0.15
